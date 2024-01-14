@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
-const connection_string = PROCESS.ENV.DATABASECONNECTION 
-const databaseName  = PROCESS.ENV.DATABASENAME
-mongoose.connect(connection_string, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-mongoose.connection.useDb()
-  module.exports = mongoose.connection
+
+function connectToDB(){
+    const connection_string = process.env.DATABASECONNECTION;
+    const databaseName  = process.env.DATABASENAME;
+    console.log(' this  ');
+    console.log(connection_string);
+    mongoose.connect(connection_string);
+    const db = mongoose.connection.useDb(databaseName);
+}
+
+
+module.exports = connectToDB;
