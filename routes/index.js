@@ -7,4 +7,8 @@ router.get('/todo', function(req, res, next) {
    getTodo(req, res, next);
 });
 
+router.post('/savetodo', (req,res,next)=>{
+  
+})
+
 module.exports = router;

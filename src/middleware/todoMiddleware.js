@@ -5,4 +5,8 @@ async function getTodo(req, res, next){
     res.json(todos);
 }
 
+async function saveTodo(req, res, next){
+    todo = req.body
+}
+
 module.exports = getTodo;
