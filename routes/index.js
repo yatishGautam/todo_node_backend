@@ -8,6 +8,7 @@ router.get('/todo', function(req, res, next) {
 });
 
 router.post('/savetodo', (req,res,next)=>{
+  console.log('here in /savetodo');
   saveTodo(req, res, next);
 })
 

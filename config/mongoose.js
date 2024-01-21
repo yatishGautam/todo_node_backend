@@ -4,10 +4,10 @@ async function connectToDB(){
     try{
         const connection_string = process.env.DATABASECONNECTION;
         const databaseName  = process.env.DATABASENAME;
-        const db = await mongoose.connect(connection_string);
-        console.log(db);
-        db.connection.useDb(databaseName);
-        return db
+        // connection_string = connection_string.concat('\\'+databaseName);
+        const connection = await mongoose.connect(connection_string);
+        connection.connection.useDb(databaseName);
+        return connection;
     }catch(error){
         console.log('db error: '+error)
     }

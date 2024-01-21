@@ -11,13 +11,16 @@ async function getAllTodos(){
     }
 };
 
-async function saveToDo(todo){
+async function saveToDoController(todo){
     try{
         const toDoToSave = new todoModel(todo);
-        await toDoToSave.save()
+        console.log('todo: '+ JSON.stringify(toDoToSave))
+        toDoToSave.save()
+        .then(() => console.log('db updated'))
+        .catch((err) => console.log(err));      
     }catch(error){
         console.log(error);
     }
 }
 
-module.exports = [getAllTodos, saveToDo]
+module.exports = [getAllTodos, saveToDoController]

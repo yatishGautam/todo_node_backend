@@ -1,7 +1,12 @@
-var mongoose = require('../../config/mongoose');
-const db = mongoose();
-console.log(db);
-const todoSchema = new db.Schema({
+const db = require('mongoose');
+// const mongoose = await connectToDB();
+// console.log(dbConnection);
+
+// const db = await mongoose();
+// console.log(db);
+const schema = db.Schema;
+
+const todoSchema = new schema({
     title: {
         type: String,
         required: true
