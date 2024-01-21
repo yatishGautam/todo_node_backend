@@ -11,5 +11,13 @@ async function getAllTodos(){
     }
 };
 
+async function saveToDo(todo){
+    try{
+        const toDoToSave = new todoModel(todo);
+        await toDoToSave.save()
+    }catch(error){
+        console.log(error);
+    }
+}
 
-module.exports = [getAllTodos]
+module.exports = [getAllTodos, saveToDo]

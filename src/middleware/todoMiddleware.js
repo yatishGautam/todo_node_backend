@@ -1,4 +1,4 @@
-const getAllTodos = require("../controller/todoController");
+const [getAllTodos, saveToDo] = require("../controller/todoController");
 
 async function getTodo(req, res, next){
     const todos = await getAllTodos();
@@ -6,7 +6,14 @@ async function getTodo(req, res, next){
 }
 
 async function saveTodo(req, res, next){
-    todo = req.body
+    try{
+        todo = req.body.todo;
+        await saveToDo(todo);
+        res.send('your shit saved');
+    }catch(error){
+        console.log(error)
+    }
+    
 }
 
-module.exports = getTodo;
+module.exports = [getTodo, saveTodo];

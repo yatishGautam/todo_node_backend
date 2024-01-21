@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 
-function connectToDB(){
-    const connection_string = process.env.DATABASECONNECTION;
-    const databaseName  = process.env.DATABASENAME;
-    console.log(' this  ');
-    console.log(connection_string);
-    mongoose.connect(connection_string);
-    const db = mongoose.connection.useDb(databaseName);
+async function connectToDB(){
+    try{
+        const connection_string = process.env.DATABASECONNECTION;
+        const databaseName  = process.env.DATABASENAME;
+        const db = await mongoose.connect(connection_string);
+        console.log(db);
+        db.connection.useDb(databaseName);
+        return db
+    }catch(error){
+        console.log('db error: '+error)
+    }
 }
 
 
