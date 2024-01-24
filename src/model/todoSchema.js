@@ -1,9 +1,5 @@
 const db = require('mongoose');
-// const mongoose = await connectToDB();
-// console.log(dbConnection);
 
-// const db = await mongoose();
-// console.log(db);
 const schema = db.Schema;
 
 const todoSchema = new schema({
