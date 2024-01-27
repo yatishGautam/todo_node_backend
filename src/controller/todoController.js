@@ -1,5 +1,9 @@
 const todoModel = require( "../model/todoSchema");
 
+const updateKeys = (data1, data2) => { 
+    return {...data1, ...data2}
+};
+
 async function getAllTodos(){
     try{
         const allTodos = await todoModel.find({});
@@ -22,15 +26,17 @@ async function saveToDoController(todo){
     }
 }
 
-async function updateTodoController(id){
+async function updateTodoController(id, newtodo){
     try{
-        const todoToUpdate = await todoModel.findOne({_id: id });
+        var todoToUpdate = await todoModel.findOne({_id: id });
+        console.log('todotoupdate from db'+JSON.stringify(todoToUpdate));
         if (!todoToUpdate){
             console.log('no todo found');
             return null;
         }
-        todoToUpdate.completed = true;
-        await todoToUpdate.save();
+        todoToUpdate = updateKeys(todoToUpdate, newtodo);
+        const todoToSave = new todoModel.create(todoToUpdate);
+        await todoToSave.save();
         const allTodDos = await todoModel.find({});
         return allTodDos;
     }catch(error){
@@ -39,4 +45,4 @@ async function updateTodoController(id){
 }
 
 
-module.exports = [getAllTodos, saveToDoController]
+module.exports = [getAllTodos, saveToDoController, updateTodoController]
