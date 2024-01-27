@@ -28,15 +28,15 @@ async function saveToDoController(todo){
 
 async function updateTodoController(id, newtodo){
     try{
-        var todoToUpdate = await todoModel.findOne({_id: id });
+        var todoToUpdate = await todoModel.findOneAndUpdate({_id: id }, newtodo);
         console.log('todotoupdate from db'+JSON.stringify(todoToUpdate));
         if (!todoToUpdate){
             console.log('no todo found');
             return null;
         }
-        todoToUpdate = updateKeys(todoToUpdate, newtodo);
-        const todoToSave = new todoModel.create(todoToUpdate);
-        await todoToSave.save();
+        // todoToUpdate = updateKeys(todoToUpdate, newtodo);
+        // const todoToSave = new todoModel(todoToUpdate);
+        // await todoToSave.save();
         const allTodDos = await todoModel.find({});
         return allTodDos;
     }catch(error){

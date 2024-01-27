@@ -19,7 +19,6 @@ async function saveTodo(req, res, next){
         try{
             const id = req.params.id;
             const newTodo = req.body.todo;
-            console.log("new todo::"+JSON.stringify(newTodo));
             const new_todo_list = await updateTodoController(id, newTodo);
             res.send(new_todo_list);
         }catch(error){
